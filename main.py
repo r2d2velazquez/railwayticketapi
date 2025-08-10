@@ -84,7 +84,7 @@ class ServiceStore:
         Path(self.download_directory).mkdir(parents=True, exist_ok=True)
         self.driver = None
 
-    def setup_stealth_driver(self):
+    def setup_stealth_driver():
         chrome_options = Options()
 
         # Railway-specific Chrome options
@@ -101,7 +101,8 @@ class ServiceStore:
         
         # Set download directory
         prefs = {
-            "download.default_directory": self.download_directory,
+            #"download.default_directory": self.download_directory,
+            "download.default_directory": DOWNLOADS_DIR,
             "download.prompt_for_download": False,
             "download.directory_upgrade": True,
             "safebrowsing.enabled": True,
