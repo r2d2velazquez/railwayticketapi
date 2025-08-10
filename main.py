@@ -124,7 +124,7 @@ class ServiceStore:
         return driver
 
     # ... [Keep all your other existing methods] ...
-        def setup_driver(self):
+    def setup_driver(self):
         """Setup Chrome WebDriver with download preferences"""
 #        chrome_options = Options()
 
