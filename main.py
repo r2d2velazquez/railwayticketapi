@@ -35,6 +35,8 @@ app = Flask(__name__)
 # Use /tmp directory for Railway (ephemeral storage)
 DOWNLOADS_DIR = Path('/tmp/downloads')
 DOWNLOADS_DIR.mkdir(exist_ok=True)
+pending_cleanup = set()
+cleanup_lock = threading.Lock()
 
 # ... [Keep all your existing ServiceStore class methods] ...
 def clean_downloads_dir():
