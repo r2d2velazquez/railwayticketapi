@@ -12,6 +12,7 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.service import Service
 import requests
 from pathlib import Path
 import zipfile
@@ -119,9 +120,10 @@ class ServiceStore:
         chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
 
         # Use system Chrome on Railway
-        chrome_options.binary_location = "/nix/store/$(ls /nix/store | grep chromium | head -1)/bin/chromium"
-        
-        driver = webdriver.Chrome(options=chrome_options)
+        #chrome_options.binary_location = "/nix/store/$(ls /nix/store | grep chromium | head -1)/bin/chromium"
+        #driver = webdriver.Chrome(options=chrome_options)
+        service = Service('/usr/bin/chromedriver')
+        driver = webdriver.Chrome(service=service, options=chrome_options)
         driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
 
         return driver
